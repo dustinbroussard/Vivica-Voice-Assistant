@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>VIVICA</title>
+  <meta name="description" content="VIVICA voice assistant interface">
+  <meta name="theme-color" content="#222244">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; connect-src https://openrouter.ai; img-src 'self' data:; script-src 'self'; style-src 'self'; worker-src 'self' data:; frame-ancestors 'none'">
+  <meta name="referrer" content="no-referrer">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiVklWSUNBIiwic2hvcnRfbmFtZSI6IlZJVklDQSIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMjIyMjQ0IiwidGhlbWVfY29sb3IiOiIjMjIyMjQ0In0=">
+  
+<link rel="stylesheet" href="style.css"></head>
+<body>
+  <canvas id="orbCanvas"></canvas>
+  <div class="vivica-name">V I V I C A</div>
+  <div id="statusOverlay" class="status-overlay" role="status" aria-live="polite" aria-atomic="true"></div>
+  <button class="settings-toggle" id="openSettings" type="button" aria-label="Open settings" aria-expanded="false">⚙</button>
+  
+
+  
+  <div class="settings-hint">
+    Press SPACE or long-press screen for settings
+  </div>
+  
+  <div class="settings-panel" id="settingsPanel" role="dialog" aria-labelledby="settingsTitle" aria-hidden="true">
+    <button class="close-settings" id="closeSettings" type="button" aria-label="Close settings">×</button>
+    <div class="setting-group">
+      <div class="setting-title" id="settingsTitle">Settings</div>
+      <label class="setting-label" for="apiKey">OpenRouter API Key</label>
+      <input type="password" class="setting-input" id="apiKey" placeholder="Enter your OpenRouter API key">
+    </div>
+    <div class="setting-group">
+      <label class="setting-label" for="modelSelect">Model</label>
+      <select class="setting-input" id="modelSelect">
+        <option value="deepseek/deepseek-chat:free">DeepSeek</option>
+        <option value="nvidia/llama-3.1-nemotron-ultra-253b-v1:free">Llama</option>
+      </select>
+    </div>
+    <div class="setting-group">
+      <label class="setting-label" for="systemPrompt">System Prompt</label>
+      <textarea class="setting-input" id="systemPrompt" rows="3" placeholder="You are VIVICA, a helpful AI assistant...">You are VIVICA, a helpful and friendly AI assistant. Respond conversationally and keep responses concise for voice interaction.</textarea>
+    </div>
+  </div>
+  
+  
+  <noscript class="noscript">Enable JavaScript to use the VIVICA interface.</noscript>
+
+
+<script src="script.js"></script></body></html>
