@@ -286,20 +286,12 @@
       }
     }
 
-    // API Call to OpenRouter
+    // API Call to OpenRouter (proxied via /api/chat for security and stability)
     async function processQuery(query) {
       if (!navigator.onLine) {
         setStatus('Offline. Check your connection.');
         speak('You appear to be offline. Please reconnect and try again.');
         setState('error');
-        return;
-      }
-      if (!apiKey) {
-        setStatus('Missing API key. Opening settings…');
-        speak("Please configure your OpenRouter API key in settings.");
-        if (!settingsPanel.classList.contains('open')) {
-          toggleSettings();
-        }
         return;
       }
 
@@ -309,13 +301,15 @@
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 25000);
-        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        if (apiKey) {
+          headers['Authorization'] = `Bearer ${apiKey}`;
+        }
+        const response = await fetch('/api/chat', {
           method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
-            'X-Title': 'VIVICA Voice Assistant'
-          },
+          headers: headers,
           body: JSON.stringify({
             model: selectedModel,
             messages: [
@@ -330,8 +324,16 @@
         clearTimeout(timeout);
 
         if (!response.ok) {
+          if (response.status === 401) {
+            setStatus('Missing or invalid API key. Opening settings…');
+            speak("Please configure your OpenRouter API key in settings.");
+            if (!settingsPanel.classList.contains('open')) {
+              toggleSettings();
+            }
+            setState('error');
+            return;
+          }
           let msg = `API Error: ${response.status}`;
-          if (response.status === 401) msg = 'Unauthorized: Check your API key.';
           if (response.status === 429) msg = 'Rate limited: Please slow down.';
           throw new Error(msg);
         }

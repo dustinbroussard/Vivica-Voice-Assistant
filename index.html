@@ -1,21 +1,23 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>VIVICA</title>
-  <meta name="description" content="VIVICA voice assistant interface">
+  <title>VIVICA - Voice Assistant</title>
+  <meta name="description" content="VIVICA voice assistant interface with speech recognition and audio-reactive orb visualization">
+  <meta property="og:title" content="VIVICA - Voice Assistant">
+  <meta property="og:description" content="VIVICA voice assistant interface with speech recognition and audio-reactive orb visualization">
   <meta name="theme-color" content="#222244">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; connect-src https://openrouter.ai; img-src 'self' data:; script-src 'self'; style-src 'self'; worker-src 'self' data:; frame-ancestors 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; connect-src 'self' https://openrouter.ai; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self' data:;">
   <meta name="referrer" content="no-referrer">
   <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiVklWSUNBIiwic2hvcnRfbmFtZSI6IlZJVklDQSIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMjIyMjQ0IiwidGhlbWVfY29sb3IiOiIjMjIyMjQ0In0=">
-  
-<link rel="stylesheet" href="style.css"></head>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
   <canvas id="orbCanvas"></canvas>
   <div class="vivica-name">V I V I C A</div>
   <div id="statusOverlay" class="status-overlay" role="status" aria-live="polite" aria-atomic="true"></div>
   <button class="settings-toggle" id="openSettings" type="button" aria-label="Open settings" aria-expanded="false">⚙</button>
-  
-
   
   <div class="settings-hint">
     Press SPACE or long-press screen for settings
@@ -41,8 +43,8 @@
     </div>
   </div>
   
-  
   <noscript class="noscript">Enable JavaScript to use the VIVICA interface.</noscript>
 
-
-<script src="script.js"></script></body></html>
+  <script src="script.js"></script>
+</body>
+</html>

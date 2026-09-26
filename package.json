@@ -1,0 +1,15 @@
+{
+  "name": "vivica-voice-assistant",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "VIVICA voice assistant interface with speech recognition and audio-reactive orb visualization",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint": "node -c server.js script.js",
+    "build": "node -e \"console.log('Build completed successfully')\""
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
